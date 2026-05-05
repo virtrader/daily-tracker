@@ -29,17 +29,6 @@ module.exports = async function handler(req, res) {
     const start = fmt(startDate);
     const end = fmt(endDate);
 
-    // Get food data
-    const foodRows = await getRows('FoodLog', 'A:E');
-    const foodByDate = {};
-    for (const row of foodRows) {
-      const d = row[0];
-      if (d < start || d > end) continue;
-      if (!foodByDate[d]) foodByDate[d] = { calories: 0, protein: 0 };
-      foodByDate[d].calories += Number(row[3]) || 0;
-      foodByDate[d].protein += Number(row[4]) || 0;
-    }
-
     // Get habit data
     const habitRows = await getRows('Habits', 'A:K');
     const habitsByDate = {};
@@ -57,8 +46,6 @@ module.exports = async function handler(req, res) {
       const d = fmt(cursor);
       days.push({
         date: d,
-        calories: foodByDate[d]?.calories || 0,
-        protein: foodByDate[d]?.protein || 0,
         habits: habitsByDate[d] ?? null,
       });
       cursor.setDate(cursor.getDate() + 1);

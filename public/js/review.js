@@ -4,8 +4,6 @@ async function loadReview(range) {
   const date = formatDate(state.currentDate);
   const data = await api(`summary?date=${date}&range=${range}`);
 
-  renderChart('chart-calories', data.days, 'calories', 'kcal');
-  renderChart('chart-protein', data.days, 'protein', 'g');
   renderChart('chart-habits', data.days, 'habits', '/10');
 }
 

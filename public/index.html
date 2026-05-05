@@ -25,29 +25,7 @@
   <!-- Tab: Today -->
   <section id="tab-today" class="tab-content active">
     <div id="summary-card" class="card">
-      <div class="summary-line">
-        <span id="sum-cal">0 kcal</span>
-        <span id="sum-prot">0g protein</span>
-        <span id="sum-habits">0/10</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Quick Add Food</h3>
-      <form id="quick-add-form">
-        <select id="qa-meal">
-          <option value="Breakfast">Breakfast</option>
-          <option value="Lunch">Lunch</option>
-          <option value="Dinner">Dinner</option>
-          <option value="Snacks">Snacks</option>
-        </select>
-        <input type="text" id="qa-item" placeholder="Food item" required>
-        <div class="row">
-          <input type="number" id="qa-cal" placeholder="kcal" required>
-          <input type="number" id="qa-prot" placeholder="protein (g)" required>
-        </div>
-        <button type="submit">Add</button>
-      </form>
+      <div id="habits-summary">0/10 habits</div>
     </div>
 
     <div class="card">
@@ -59,28 +37,6 @@
       <button id="export-day" class="btn-export">Export Today for Claude</button>
       <button id="export-week" class="btn-export btn-secondary">Export Week</button>
     </div>
-  </section>
-
-  <!-- Tab: Food -->
-  <section id="tab-food" class="tab-content">
-    <div class="card">
-      <h3>Add Food</h3>
-      <form id="food-form">
-        <select id="f-meal">
-          <option value="Breakfast">Breakfast</option>
-          <option value="Lunch">Lunch</option>
-          <option value="Dinner">Dinner</option>
-          <option value="Snacks">Snacks</option>
-        </select>
-        <input type="text" id="f-item" placeholder="Food item" required>
-        <div class="row">
-          <input type="number" id="f-cal" placeholder="kcal" required>
-          <input type="number" id="f-prot" placeholder="protein (g)" required>
-        </div>
-        <button type="submit">Add</button>
-      </form>
-    </div>
-    <div id="food-list"></div>
   </section>
 
   <!-- Tab: Habits -->
@@ -98,14 +54,6 @@
       <button class="toggle-btn" data-range="month">Month</button>
     </div>
     <div class="card">
-      <h3>Calories</h3>
-      <div id="chart-calories" class="chart"></div>
-    </div>
-    <div class="card">
-      <h3>Protein (g)</h3>
-      <div id="chart-protein" class="chart"></div>
-    </div>
-    <div class="card">
       <h3>Habits</h3>
       <div id="chart-habits" class="chart"></div>
     </div>
@@ -116,10 +64,6 @@
     <button class="nav-btn active" data-tab="today">
       <span class="nav-icon">&#9737;</span>
       <span>Today</span>
-    </button>
-    <button class="nav-btn" data-tab="food">
-      <span class="nav-icon">&#9733;</span>
-      <span>Food</span>
     </button>
     <button class="nav-btn" data-tab="habits">
       <span class="nav-icon">&#10003;</span>
@@ -132,7 +76,6 @@
   </nav>
 
   <script src="/js/app.js"></script>
-  <script src="/js/food.js"></script>
   <script src="/js/habits.js"></script>
   <script src="/js/review.js"></script>
   <script src="/js/export.js"></script>

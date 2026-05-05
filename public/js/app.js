@@ -2,7 +2,6 @@
 const state = {
   currentDate: new Date(),
   habits: {},
-  foodEntries: [],
 };
 
 const HABIT_KEYS = [
@@ -81,28 +80,18 @@ function switchTab(tabName) {
 // Load all data for current date
 async function loadDayData() {
   const date = formatDate(state.currentDate);
-  const [foodData, habitData] = await Promise.all([
-    api(`food?date=${date}`),
-    api(`habits?date=${date}`),
-  ]);
+  const habitData = await api(`habits?date=${date}`);
 
-  state.foodEntries = foodData.entries || [];
   state.habits = habitData.habits || {};
 
-  renderFoodList();
   renderHabitGrid();
   renderHabitsList();
   updateSummary();
 }
 
 function updateSummary() {
-  const totalCal = state.foodEntries.reduce((s, e) => s + e.calories, 0);
-  const totalProt = state.foodEntries.reduce((s, e) => s + e.protein, 0);
   const habitsDone = Object.values(state.habits).filter(Boolean).length;
-
-  document.getElementById('sum-cal').textContent = `${totalCal} kcal`;
-  document.getElementById('sum-prot').textContent = `${totalProt}g protein`;
-  document.getElementById('sum-habits').textContent = `${habitsDone}/10`;
+  document.getElementById('habits-summary').textContent = `${habitsDone}/10 habits`;
 }
 
 // Init
